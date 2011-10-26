@@ -46,7 +46,7 @@ class Macvim < Formula
     args << "--enable-cscope" if ARGV.include? "--with-cscope"
     args << "--enable-clipboard" if ARGV.include? "--enable-clipboard"
 
-    system "./configure", *args
+    system *(%w{rvm system exec ./configure} + args)
 
     unless ARGV.include? "--custom-icons"
       inreplace "src/MacVim/icons/Makefile", "$(MAKE) -C makeicns", ""
