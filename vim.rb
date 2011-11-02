@@ -9,9 +9,14 @@ class Vim < Formula
 
   head 'https://vim.googlecode.com/hg/'
 
+  skip_clean "bin"
+  
   def install
     # Debugging symbols
     ENV["CFLAGS"] = "-g"
+    
+    # No-op the strip
+    ENV["STRIP"] = "/usr/bin/true"
 
     system "rvm", "system", "exec", "./configure", "--prefix=#{prefix}",
                                                    "--mandir=#{man}",
